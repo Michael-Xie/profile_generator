@@ -19,15 +19,19 @@ const questions = [
 ];
 let response = [];
 let index = 0;
+
+const formattedResponse = function(response) {
+ return `${response[0]} loves listening to ${response[2]} while ${response[1]}, devouring ${response[4]} during ${response[3]}, prefers ${response[5]} over any other sport, and is amazing at ${response[6]}.
+ `;
+ 
+}
 const newQuestion = (questions, readline) => {
   readline.question(questions[index], (answer) => {
     response.push(answer);
     index++;
     if (index < questions.length) 
       return newQuestion(questions, readline)
-    const formatted = `
-${response[0]} loves listening to ${response[2]} while ${response[1]}, devouring ${response[4]} during ${response[3]}, prefers ${response[5]} over any other sport, and is amazing at ${response[6]}.
-`;
+    const formatted = formattedResponse(response);
     console.log(formatted);
     readline.close();
   });
